@@ -1,0 +1,41 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.qifan.librarytemplatesample"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(deps.androidx.app_compat)
+    implementation(deps.androidx.coreKtx)
+    implementation(deps.androidx.constraint_layout)
+    testImplementation(deps.test.junit.core)
+    androidTestImplementation(deps.test.junit.ext)
+    androidTestImplementation(deps.test.espresso.core)
+}
